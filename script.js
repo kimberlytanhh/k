@@ -193,6 +193,7 @@ function burstHearts(cx,cy,count=20,large=false){
 ============================ */
 function setSearching(){
     particles.innerHTML = '';
+   message.className=' ';
     message.textContent = 'Who shall be the lucky couple?';
 }
 
