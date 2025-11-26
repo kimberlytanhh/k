@@ -1,12 +1,14 @@
 /* v10 Landscape style */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; touch-action: none; }
+
 body {
     font-family: Inter, system-ui, Arial;
     color: #fff;
     overscroll-behavior: none;
-    background: #A3001B;   /* your solid red background */
+    background: #A3001B;   /* Red background outside heart */
 }
+
 #app {
     position: relative;
     width: 100%;
@@ -14,30 +16,38 @@ body {
     overflow: hidden;
 }
 
-/* ============================ */
-/* HEART-SHAPED CAMERA (CENTER) */
-/* ============================ */
-#cameraCanvas {
+/* ============================= */
+/* ❤️ HEART-SHAPED CAMERA SETUP */
+/* ============================= */
+
+/* Heart container: controls size + position */
+#cameraHeart {
     position: absolute;
     left: 50%;
-    top: 58%;               /* Adjust this if you want the heart higher/lower */
+    top: 58%;
     transform: translate(-50%, -50%);
 
-    width: 200vh;           /* Same as your original heart size */
-    height: 80vh;           /* Same vertical size */
+    width: 200vh;    /* Matches your original outline size */
+    height: 80vh;
 
-    object-fit: cover;
+    overflow: hidden; /* Hide camera outside heart */
     z-index: 10;
-    background: transparent;
 
-    /* Camera only visible INSIDE the heart */
+    /* Heart shape (clip-path) */
     -webkit-clip-path: path("M50 82 L45 78 C20 58 5 40 5 25 C5 12 17 5 30 12 C38 17 43 24 50 30 C57 24 62 17 70 12 C83 5 95 12 95 25 C95 40 80 58 55 78 L50 82 Z");
     clip-path: path("M50 82 L45 78 C20 58 5 40 5 25 C5 12 17 5 30 12 C38 17 43 24 50 30 C57 24 62 17 70 12 C83 5 95 12 95 25 C95 40 80 58 55 78 L50 82 Z");
 }
 
-/* ============================ */
-/* TEXT + UI ELEMENTS */
-/* ============================ */
+/* Camera fills the container */
+#cameraCanvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================= */
+/* TEXT ELEMENTS */
+/* ============================= */
 
 #kisscamText {
     position: absolute;
@@ -63,7 +73,10 @@ body {
     pointer-events: none;
 }
 
-/* Buttons bottom-left and bottom-right */
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
 #controls {
     position: absolute;
     bottom: 4vh;
@@ -74,6 +87,7 @@ body {
     padding: 0 4vw;
     z-index: 70;
 }
+
 #controls button {
     padding: 12px 22px;
     font-size: 3.6vh;
@@ -84,17 +98,22 @@ body {
     min-width: 36vw;
     max-width: 46vw;
 }
+
 #controls button.right {
     background: #c1121f;
 }
 
-/* Particle hearts */
+/* ============================= */
+/* PARTICLES */
+/* ============================= */
+
 #particles {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 55;
 }
+
 .heartParticle {
     position: absolute;
     opacity: 0;
@@ -102,7 +121,7 @@ body {
     pointer-events: none;
 }
 
-/* Developer control (hidden small) */
+/* Dev controls (hidden) */
 #devControls {
     position: absolute;
     top: 2vh;
@@ -110,7 +129,7 @@ body {
     z-index: 80;
     opacity: 0.001;
 }
+
 #devControls select {
     font-size: 12px;
 }
-
